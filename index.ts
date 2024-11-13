@@ -1,10 +1,10 @@
 const fs = require('node:fs');
 
 // Data: Simulerar data från radbaserad fil
-const { rowbasedDataString } = require("./data");
+const { rowbasedDataString } = require("./modules/data");
 
 // Funktioner för att konvertera data från radbaserad fil till JSON
-const { alt1AsJSON, alt1AsXML } = require("./convert");
+const { alt1AsJSON, alt1AsXML } = require("./modules/convert");
 
 const writeFile = (data: string) => {
   const unixtime = Math.floor(Date.now() / 1000)
