@@ -1,9 +1,37 @@
-P|Carl Gustaf|Bernadotte
-T|0768-101801|08-101801
-A|Drottningholms slott|Stockholm|10001
-F|Victoria|1977
-A|Haga Slott|Stockholm|10002
-F|Carl Philip|1979
-T|0768-101802|08-101802
-P|Barack|Obama
-A|1600 Pennsylvania Avenue|Washington, D.C
+P|Madeleine|Bernadotte
+T|0768-101803|08-101803
+A|Royal Mews|London|W1A 1AA
+F|Leonore|2014
+A|Florida Residence|Miami|33101
+F|Nicolas|2015
+T|0768-101804|08-101804
+
+P|Angela|Merkel
+T|030-182170|030-182171
+A|Kanzleramt|Berlin|11011
+F|Johannes|1990
+A|Bundeskanzleramt|Berlin|11012
+T|030-182172|030-182173
+
+P|Emmanuel|Macron
+T|012-3456789|01-23456789
+A|Élysée Palace|Paris|75008
+F|Jean|2017
+A|Élysée Palace|Paris|75009
+F|Brigitte|1953
+T|012-3456790|01-23456790
+
+P|Jacinda|Ardern
+T|04-816-6400|04-816-6401
+A|Premier House|Wellington|6011
+F|Neve|2018
+A|Wellington Residence|Wellington|6012
+T|04-816-6402|04-816-6403
+
+P|Justin|Trudeau
+T|613-555-1234|613-555-5678
+A|24 Sussex Drive|Ottawa|K1M 1M4
+F|Xavier|2007
+A|Rideau Cottage|Ottawa|K1M 1M5
+F|Ella-Grace|2009
+T|613-555-1235|613-555-5679
