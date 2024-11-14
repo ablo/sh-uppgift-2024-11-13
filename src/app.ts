@@ -8,7 +8,7 @@ const { Eta } = require("eta");
 
 
 // respond with "hello world" when a GET request is made to the homepage
-app.get("/", async (req: any, res: any) => {
+app.get("/", (req: any, res: any) => {
   // Data: Simulerar data från radbaserad fil
   const eta = new Eta({ views: path.join(__dirname, "templates") })
   const { rowbasedDataString } = require("../modules/data");
