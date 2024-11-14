@@ -3,7 +3,7 @@ const app = express();
 var xml = require("xml");
 const path = require("path");
 
-import { Eta } from "eta";
+const { Eta } = require("eta");
 
 
 
