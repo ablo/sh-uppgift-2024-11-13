@@ -14,7 +14,7 @@ npm install
 npx ts-node src/app.ts 
 ```
 
-## Integration mellan två gamla system
+## Integration mellan två system
 
 ### System 1
 
