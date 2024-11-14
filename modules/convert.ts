@@ -12,10 +12,13 @@ export const alt1AsJSON = (data: string): People[] => {
     if (isPerson) {
       const personData = row.split("|");
       // Get data following person index
-      const data = rows.slice(index + 1);
-      const phone = data.find((row) => row.startsWith("T|"));
-      const address = data.find((row) => row.startsWith("A|"));
-      const family = data.filter((row) => row.startsWith("F|"));
+      const rest = rows.slice(index + 1);
+      const familyIndex = rest.findIndex((row) => row.startsWith("F|"));
+      const data = rest.slice(0, familyIndex != -1 ? familyIndex : rest.length); // Make sure we we check data to the end even if wwe have no family
+      console.log(familyIndex, row, data)
+      const phone = data.find((_row) => _row.startsWith("T|"));
+      const address = data.find((_row) => _row.startsWith("A|"));
+      const family = rest.filter((_row) => _row.startsWith("F|"));
       let person: Person = {
         firstname: personData[1],
         lastname: personData[2],
@@ -49,6 +52,7 @@ export const alt1AsJSON = (data: string): People[] => {
   });
   return people;
 };
+
 // Funktion för att konvertera JSON till XML
 export const alt1AsXML = (data: string): People[] => {
   const people = alt1AsJSON(data);
