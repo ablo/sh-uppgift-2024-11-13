@@ -12,13 +12,13 @@ export const alt1AsJSON = (data: string): People[] => {
     if (isPerson) {
       const personData = row.split("|");
       // Get data following person index
-      const rest = rows.slice(index + 1);
+      var personIndex = index
+      var nextPersonIndex = rows.findIndex((_row, i) => i > index && _row.startsWith("P|"));
+      const rest = rows.slice(index + 1, nextPersonIndex != -1 ? nextPersonIndex : rows.length);
       const familyIndex = rest.findIndex((row) => row.startsWith("F|"));
       const data = rest.slice(0, familyIndex != -1 ? familyIndex : rest.length); // Make sure we we check data to the end even if wwe have no family
-      console.log(familyIndex, row, data)
       const phone = data.find((_row) => _row.startsWith("T|"));
       const address = data.find((_row) => _row.startsWith("A|"));
-      const family = rest.filter((_row) => _row.startsWith("F|"));
       let person: Person = {
         firstname: personData[1],
         lastname: personData[2],
@@ -33,17 +33,39 @@ export const alt1AsJSON = (data: string): People[] => {
         },
         family: [],
       };
-      family.forEach((familyRow) => {
-        const familyData = familyRow.split("|");
+      const family = rest.filter((_row) => _row.startsWith("F|"));
+      console.log('family', family)
+      family.forEach((familyRow, i) => { // Looop through family members
+        console.log('nextPersonIndex', nextPersonIndex)
+        const familyData = familyRow.split("|"); // Extract family data
+        const familyPersonIndex = rest.findIndex((_row, idx) => {
+          return _row.startsWith(`F|${familyData[1]}`)
+        }); // Index for family row
+        const hasMoreFamilyMembers = family.length > i + 1;
+        const nextFamilyPersonIndex = hasMoreFamilyMembers ? rest.findIndex((_row) => {
+          return _row.startsWith(`F|${family[i + 1].split("|")[1]}`)
+        }) : rest.length;
+        const familyPersonRest = rest.slice(familyPersonIndex + 1, nextFamilyPersonIndex);
+        console.log(familyData[1],familyData)
+        let addressRow = familyPersonRest.find((_row) => _row.startsWith("A|")) || 'A|'
+        let phoneRow = familyPersonRest.find((_row) => _row.startsWith("T|")) || 'T|'
+        console.log('addressRow', addressRow)
+        console.log('phoneRow', phoneRow)
+        let addressData = addressRow?.split('|') || [];
+        let phoneData = phoneRow?.split('|') || [];
         person.family?.push({
           person: {
             name: familyData[1],
             born: familyData[2],
             address: {
-              street: familyData[3],
-              city: familyData[4],
-              zip: familyData[5],
+              street: addressData[1],
+              city: addressData[2],
+              zip: addressData[3],
             },
+            phone: {
+              mobile: phoneData[1],
+              landline: phoneData[2],
+            }
           },
         });
       });
@@ -91,6 +113,7 @@ interface FamilyPerson {
     name: string;
     born: string;
     address: Address;
+    phone: Phone;
   };
 }
 
